@@ -5,11 +5,10 @@ RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --ignore-scripts
-
-RUN chmod +x node_modules/.bin/* && npx prisma generate
-
 COPY prisma ./prisma/
+
+RUN npm ci --ignore-scripts && chmod +x node_modules/.bin/* && npx prisma generate
+
 COPY . .
 
 RUN npx tsc
