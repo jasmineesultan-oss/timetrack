@@ -7,11 +7,11 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma/
 
-RUN npm ci --ignore-scripts && chmod +x node_modules/.bin/* && npx prisma generate
+RUN npm ci --ignore-scripts && npx prisma generate
 
 COPY . .
 
-RUN npx tsc
+RUN chmod +x node_modules/.bin/* && npx tsc
 
 EXPOSE 3001
 
