@@ -5,13 +5,14 @@ RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --ignore-scripts
+
+RUN chmod +x node_modules/.bin/* && npx prisma generate
 
 COPY prisma ./prisma/
-RUN npx prisma generate
-
 COPY . .
-RUN npm run build
+
+RUN npx tsc
 
 EXPOSE 3001
 
