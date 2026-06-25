@@ -2,7 +2,8 @@
   "name": "timetrack-backend",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "prisma generate",`n    "dev": "ts-node-dev --respawn src/index.ts",
+    "postinstall": "prisma generate",
+    "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "prisma:generate": "prisma generate",
